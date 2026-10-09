@@ -256,3 +256,26 @@ h1, h2, h3, .case-name, .result-figure, .guide-title { font-family: var(--displa
   .hero-photo:hover img, .portrait:hover img, .voice-portrait:hover img { transform: none; }
   .scene-toggle { display: none; }
 }
+
+/* Keep the original paper trail as the main hero visual. The team photograph
+   introduces the practice section after the complete evidence sequence. */
+.hero-inner { display: block; }
+.hero-copy { max-width: min(65vw, 820px); }
+.hero-title { font-size: clamp(48px, 5.2vw, 88px); max-width: 11.6em; }
+.hero::before { background: linear-gradient(90deg, rgba(18,19,61,.93) 0%, rgba(18,19,61,.62) 34%, rgba(18,19,61,0) 70%); }
+.cases-intro { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.83fr); gap: clamp(45px, 8vw, 125px); align-items: center; margin-bottom: clamp(48px, 6vw, 84px); }
+.cases-intro .cases-head { margin: 0; }
+.case-team-visual { max-width: 480px; }
+.case-team-visual .hero-photo { box-shadow: 0 24px 60px rgba(40,40,163,.12); }
+.case-team-visual .hero-photo-note, .case-team-visual .hero-photo-note a { color: var(--york-blue); }
+@media (max-width: 899px) {
+  .hero { min-height: 100svh; align-items: flex-end; padding-top: calc(var(--nav-h) + var(--bar-h) + 200px); padding-bottom: 100px; }
+  .hero-inner { max-width: none; }
+  .hero-copy { max-width: 650px; }
+  .hero-title { font-size: clamp(40px, 9.6vw, 70px); }
+  .hero::before { background: linear-gradient(to top, rgba(18,19,61,.98), rgba(18,19,61,.74) 45%, rgba(18,19,61,.04) 83%); }
+  .cases-intro { grid-template-columns: 1fr; gap: 30px; margin-bottom: 40px; }
+  .case-team-visual { width: 100%; max-width: 630px; }
+  .hero-bottom > span { max-width: 58%; }
+}
+@media (pointer: coarse) { .hero-bottom > span { font-size: 0; } .hero-bottom > span::after { content: 'Scroll to follow the paper trail.'; font-size: 11px; } }

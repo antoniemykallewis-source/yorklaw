@@ -2,7 +2,7 @@
 // pointer and reveals what the paperwork hides; scrolling flies the camera through
 // the archive and lines every page up into one wall of evidence.
 import * as THREE from '../vendor/three.module.min.js';
-import { buildAtlas, TILE_W, TILE_H, COLS, ATLAS, DOC_COUNT } from './atlas.js?v=york-brand-20261009';
+import { buildAtlas, TILE_W, TILE_H, COLS, ATLAS, DOC_COUNT } from './atlas.js?v=york-brand-20261009b';
 
 const NIGHT = '#12133D';
 

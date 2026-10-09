@@ -147,7 +147,7 @@ document.querySelectorAll('.reveal').forEach((el) => revealIO.observe(el));
     if (!en.isIntersecting) return;
     io.disconnect();
     try {
-      const { buildAtlas, TILE_W, TILE_H, COLS } = await import('./atlas.js?v=york-brand-20261009');
+      const { buildAtlas, TILE_W, TILE_H, COLS } = await import('./atlas.js?v=york-brand-20261009b');
       const scale = 0.5;
       const atlas = await buildAtlas(scale);
       const ctx = target.getContext('2d');
@@ -304,7 +304,7 @@ async function setup3D() {
   })();
   if (!supported) { html.classList.add('no-webgl', 'has-still'); return; }
   try {
-    const { createRecord } = await import('./record.js?v=york-brand-20261009');
+    const { createRecord } = await import('./record.js?v=york-brand-20261009b');
     record = await createRecord(canvas, { mobile, reduced });
     window.__record = record;
     html.classList.add('has-webgl');
