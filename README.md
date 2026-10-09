@@ -14,4 +14,4 @@ Uses York's official royal blue, orange, white, logo, group photograph, attorney
 
 The original record spotlight, scroll-driven evidence wall, horizontal results, review carousel and stacked process remain. The refresh adds pointer-responsive photograph depth, accessible evidence step navigation and a pause control for the 3D scene. Touch layouts and reduced-motion alternatives are preserved.
 
-Buildless static site. GitHub Pages serves the repository root. `index.html` loads the original structural styles from `css/site.css` and the York visual layer from `css/brand.css`. No dependency install or build step is required.
+Buildless static site. Source is maintained on `main`; GitHub Pages serves the repository root of `gh-pages`. Publish by advancing `gh-pages` to the reviewed site commit. `index.html` loads the original structural styles from `css/site.css` and the York visual layer from `css/brand.css`. No dependency install or build step is required.
