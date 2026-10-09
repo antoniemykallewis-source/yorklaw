@@ -81,6 +81,23 @@ const revealIO = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 document.querySelectorAll('.reveal').forEach((el) => revealIO.observe(el));
 
+// A compact action bar follows the first screen on phones and yields to the form.
+const mobileActions = document.querySelector('[data-mobile-actions]');
+if (mobileActions) {
+  let heroVisible = true;
+  let contactVisible = false;
+  const syncActions = () => {
+    mobileActions.hidden = desktopMQ.matches || heroVisible || contactVisible || !menu.hidden;
+  };
+  new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncActions(); }).observe(document.querySelector('.hero'));
+  new IntersectionObserver(([entry]) => { contactVisible = entry.isIntersecting; syncActions(); }).observe(document.querySelector('#contact'));
+  desktopMQ.addEventListener('change', syncActions);
+  menuOpen.addEventListener('click', syncActions);
+  menuClose.addEventListener('click', syncActions);
+  menu.querySelectorAll('[data-menu-link]').forEach(a => a.addEventListener('click', syncActions));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') syncActions(); });
+}
+
 // ---------------------------------------------------------------- reviews
 (() => {
   const root = document.querySelector('[data-voices]');
@@ -238,7 +255,7 @@ function setupScroll() {
   const recordTrigger = ScrollTrigger.create({
     trigger: '.record',
     start: 'top top',
-    end: () => '+=' + Math.round(window.innerHeight * 3.2),
+    end: () => '+=' + Math.round(window.innerHeight * (mobile ? 1.8 : 3.2)),
     pin: true,
     anticipatePin: 1,
     onUpdate: (self) => {

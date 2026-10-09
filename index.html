@@ -16,8 +16,8 @@
 <link rel="preload" href="fonts/poppins-700.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="fonts/nunito-sans-400.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="img/york-team.jpg" as="image" fetchpriority="high">
-<link rel="stylesheet" href="css/site.css?v=york-brand-20261009b">
-<link rel="stylesheet" href="css/brand.css?v=york-brand-20261009b">
+<style>img{max-width:100%;height:auto}.brand{display:inline-flex;width:200px;max-width:calc(100% - 108px)}.brand-logo{width:100%;height:auto;max-height:46px;object-fit:contain}.hero-photo-window{overflow:hidden}.hero-photo-window img{display:block;width:100%;height:auto}</style>
+<link rel="stylesheet" href="css/site.css?v=york-mobile-20261009-2">
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
 <body>
@@ -25,14 +25,14 @@
 
 <div class="top" data-top>
   <div class="concept-bar" data-concept-bar>
-    <p>Design concept by <a href="https://vessel-archive.com/" rel="noopener">Vessel Archive</a>. Not York Law Firm's official website.</p>
+    <p><span class="concept-long">Design concept by </span><a href="https://vessel-archive.com/" rel="noopener">Vessel Archive</a><span class="concept-long">. Not York Law Firm's official website.</span><span class="concept-short"> · Website concept</span></p>
     <button type="button" class="concept-close" data-concept-close aria-label="Hide concept notice">
       <svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
     </button>
   </div>
   <header class="nav" data-nav>
     <a class="brand" href="#top" aria-label="York Law Firm, back to top">
-      <img class="brand-logo" src="img/york-logo.png" alt="York Law Firm" width="1001" height="192">
+      <img class="brand-logo" src="img/york-logo.png" alt="York Law Firm" width="200" height="38">
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#cases">Cases</a>
@@ -74,9 +74,9 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-copy">
-        <p class="hero-eyebrow"><span></span> Sacramento · San Jose · Berkeley</p>
+        <p class="hero-eyebrow"><span></span> Advocates for Northern California families</p>
         <h1 class="hero-title" id="hero-title">Neglect leaves a record. <em>We find it.</em></h1>
-        <p class="hero-sub">York Law Firm represents families in elder abuse, neglect and wrongful death cases against nursing homes and care operators.</p>
+        <p class="hero-sub">Standing with families in elder abuse, neglect and wrongful death cases against nursing homes and care operators.</p>
         <div class="hero-ctas">
           <a class="btn btn-amber" href="#contact">Free case review
             <svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
@@ -179,6 +179,7 @@
         <p class="label">On the record</p>
         <h2 class="h2" id="results-title">Firsts, verdicts and recognition</h2>
       </div>
+      <p class="wrap mobile-swipe-hint">A record of accountability <span aria-hidden="true">Swipe →</span></p>
       <div class="results-viewport">
         <ol class="results-track" data-results-track>
           <li class="result">
@@ -296,7 +297,8 @@
     <div class="wrap">
       <p class="label reveal">Real people. Relentless advocates.</p>
       <h2 class="h2 reveal" id="team-title">The people on your case</h2>
-      <div class="team-grid">
+      <p class="mobile-swipe-hint">Meet your advocates <span aria-hidden="true">Swipe →</span></p>
+      <div class="team-grid" aria-label="York attorneys">
         <article class="person person-lead reveal">
           <a class="portrait" data-tilt href="https://www.yorklawfirm.com/attorney/york-wendy-c/" aria-label="Read Wendy C. York's biography">
             <img src="img/wendy-york.jpg" alt="Wendy C. York" width="450" height="450" loading="lazy" decoding="async">
@@ -429,10 +431,14 @@
     <p class="footer-concept">Website concept by <a href="https://vessel-archive.com/" rel="noopener">Vessel Archive</a>, October 2026. Not York Law Firm's official website, and not affiliated with or endorsed by the firm. Case information is drawn from the firm's public website.</p>
   </div>
 </footer>
+<div class="mobile-actions" data-mobile-actions aria-label="Contact York Law Firm" hidden>
+  <a href="tel:+19166432200">Call York <span aria-hidden="true">↗</span></a>
+  <a href="#contact">Free case review <span aria-hidden="true">→</span></a>
+</div>
 
 <script src="vendor/gsap.min.js" defer></script>
 <script src="vendor/ScrollTrigger.min.js" defer></script>
 <script src="vendor/lenis.min.js" defer></script>
-<script type="module" src="js/main.js?v=york-brand-20261009b"></script>
+<script type="module" src="js/main.js?v=york-mobile-20261009-2"></script>
 </body>
 </html>
