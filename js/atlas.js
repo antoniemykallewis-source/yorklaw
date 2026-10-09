@@ -1,6 +1,6 @@
 // Procedural "record" textures for the 3D archive.
 // Every document is illustrative: generic forms, no real names, facilities or records.
-// Amber (#FFB547) marks the gaps and contradictions; the shader lights those up inside the beam.
+// Orange (#F56032) marks the gaps and contradictions; the shader lights those up inside the beam.
 
 export const TILE_W = 512;
 export const TILE_H = 662;
@@ -13,10 +13,10 @@ const PAPER_2 = '#E3DDD0';
 const INK = '#23262B';
 const INK_SOFT = '#5B5F66';
 const RULE = '#BDB8AD';
-const AMBER = '#FFB547';
+const AMBER = '#F56032';
 
 const MONO = '"IBM Plex Mono", ui-monospace, monospace';
-const SANS = '"Schibsted Grotesk", system-ui, sans-serif';
+const SANS = '"Poppins", system-ui, sans-serif';
 
 function rng(seed) {
   let s = seed >>> 0;
@@ -406,8 +406,8 @@ export async function buildAtlas(scale = 1) {
     try {
       await Promise.all([
         document.fonts.load(`500 16px "IBM Plex Mono"`),
-        document.fonts.load(`700 25px "Schibsted Grotesk"`),
-        document.fonts.load(`italic 500 19px "Schibsted Grotesk"`),
+        document.fonts.load(`700 25px "Poppins"`),
+        document.fonts.load(`italic 500 19px "Poppins"`),
       ]);
     } catch (e) { /* draw with fallbacks */ }
   }

@@ -2,9 +2,9 @@
 // pointer and reveals what the paperwork hides; scrolling flies the camera through
 // the archive and lines every page up into one wall of evidence.
 import * as THREE from '../vendor/three.module.min.js';
-import { buildAtlas, TILE_W, TILE_H, COLS, ATLAS, DOC_COUNT } from './atlas.js';
+import { buildAtlas, TILE_W, TILE_H, COLS, ATLAS, DOC_COUNT } from './atlas.js?v=york-brand-20261009';
 
-const NIGHT = '#0B0D10';
+const NIGHT = '#12133D';
 
 function mulberry32(a) {
   return function () {
@@ -93,7 +93,7 @@ void main(){
   float diffuse = facing > 0.0 ? 0.3 + 0.7 * facing : 0.22 * (-facing);
   float lit = beam * diffuse * atten * uReveal;
   float fill = 0.010 + 0.020 * clamp(dot(n, normalize(vec3(0.3, 0.8, 0.5))), 0.0, 1.0);
-  vec3 warm = vec3(1.0, 0.87, 0.68);
+  vec3 warm = vec3(1.0, 0.91, 0.85);
   vec3 color = albedo * (fill + lit * 2.9 * warm);
   color += uAmber * amberMask * lit * 1.5;
   float f = smoothstep(uFogNear, uFogFar, vViewDepth);
@@ -133,7 +133,7 @@ varying float vAlpha;
 void main(){
   float d = length(gl_PointCoord - 0.5);
   float a = smoothstep(0.5, 0.0, d) * vAlpha;
-  gl_FragColor = vec4(vec3(1.0, 0.84, 0.6) * a, a);
+  gl_FragColor = vec4(vec3(1.0, 0.64, 0.44) * a, a);
 }`;
 
 const CONE_VERT = /* glsl */`
@@ -158,7 +158,7 @@ void main(){
   float core = pow(facing, 2.4);
   float along = smoothstep(0.0, 0.05, vAlong) * pow(1.0 - clamp(vAlong, 0.0, 1.0), 1.7);
   float a = uIntensity * core * along * 0.24;
-  gl_FragColor = vec4(vec3(1.0, 0.82, 0.58) * a, a);
+  gl_FragColor = vec4(vec3(1.0, 0.65, 0.48) * a, a);
 }`;
 
 export async function createRecord(canvas, { mobile = false, reduced = false } = {}) {
@@ -253,7 +253,7 @@ export async function createRecord(canvas, { mobile = false, reduced = false } =
       uFogColor: { value: fogColor },
       uFogNear: { value: 16 },
       uFogFar: { value: 44 },
-      uAmber: { value: new THREE.Color('#FFB547') },
+      uAmber: { value: new THREE.Color('#F56032') },
     },
   });
   const docs = new THREE.Mesh(geo, docMat);

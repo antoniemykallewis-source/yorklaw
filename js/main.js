@@ -30,6 +30,11 @@ function setMenu(open) {
   menu.hidden = !open;
   menuOpen.setAttribute('aria-expanded', String(open));
   document.body.style.overflow = open ? 'hidden' : '';
+  document.querySelector('main').inert = open;
+  document.querySelector('.top').inert = open;
+  document.querySelector('footer').inert = open;
+  if (open) window.__lenis?.stop();
+  else window.__lenis?.start();
   if (open) menu.querySelector('a')?.focus();
   else menuOpen.focus();
 }
@@ -37,6 +42,36 @@ menuOpen?.addEventListener('click', () => setMenu(true));
 menuClose?.addEventListener('click', () => setMenu(false));
 menu?.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) setMenu(false); });
+menu.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+  const items = [...menu.querySelectorAll('a[href], button')];
+  const first = items[0], last = items[items.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+// York photography: small pointer-driven rotations, no motion on touch or reduced motion.
+if (!reduced && !coarse) {
+  document.querySelectorAll('[data-tilt]').forEach((card) => {
+    let frame = 0;
+    card.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch') return;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const box = card.getBoundingClientRect();
+        const x = Math.max(-.5, Math.min(.5, (event.clientX - box.left) / box.width - .5));
+        const y = Math.max(-.5, Math.min(.5, (event.clientY - box.top) / box.height - .5));
+        card.style.setProperty('--tilt-x', `${-y * 7}deg`);
+        card.style.setProperty('--tilt-y', `${x * 9}deg`);
+      });
+    }, { passive: true });
+    card.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(frame);
+      card.style.removeProperty('--tilt-x');
+      card.style.removeProperty('--tilt-y');
+    });
+  });
+}
 
 // ---------------------------------------------------------------- reveal on enter
 const revealIO = new IntersectionObserver((entries) => {
@@ -64,7 +99,7 @@ document.querySelectorAll('.reveal').forEach((el) => revealIO.observe(el));
     idx.textContent = String(i + 1);
   };
   const stopAuto = () => { window.clearInterval(timer); timer = 0; };
-  const startAuto = () => { if (!reduced && !touched && !timer) timer = window.setInterval(() => show(i + 1), 8000); };
+  const startAuto = () => { if (!reduced && !touched && !timer && !root.contains(document.activeElement)) timer = window.setInterval(() => show(i + 1), 8000); };
   root.querySelector('[data-voice-prev]').addEventListener('click', () => { touched = true; stopAuto(); show(i - 1); });
   root.querySelector('[data-voice-next]').addEventListener('click', () => { touched = true; stopAuto(); show(i + 1); });
   root.addEventListener('pointerenter', stopAuto);
@@ -112,13 +147,13 @@ document.querySelectorAll('.reveal').forEach((el) => revealIO.observe(el));
     if (!en.isIntersecting) return;
     io.disconnect();
     try {
-      const { buildAtlas, TILE_W, TILE_H, COLS } = await import('./atlas.js');
+      const { buildAtlas, TILE_W, TILE_H, COLS } = await import('./atlas.js?v=york-brand-20261009');
       const scale = 0.5;
       const atlas = await buildAtlas(scale);
       const ctx = target.getContext('2d');
       const W = target.width;
       const H = target.height;
-      ctx.fillStyle = '#181C22';
+      ctx.fillStyle = '#232575';
       ctx.fillRect(0, 0, W, H);
       const tile = (i) => [(i % COLS) * TILE_W * scale, Math.floor(i / COLS) * TILE_H * scale, TILE_W * scale, TILE_H * scale];
       const place = (i, x, y, w, rot) => {
@@ -135,9 +170,9 @@ document.querySelectorAll('.reveal').forEach((el) => revealIO.observe(el));
       place(0, W * 0.58, H * 0.46, 330, 0.05);
       place(7, W * 0.84, H * 0.58, 280, 0.16);
       const g = ctx.createRadialGradient(W * 0.55, H * 0.38, 20, W * 0.55, H * 0.45, W * 0.62);
-      g.addColorStop(0, 'rgba(255,181,71,0.10)');
-      g.addColorStop(0.5, 'rgba(11,13,16,0.25)');
-      g.addColorStop(1, 'rgba(11,13,16,0.85)');
+      g.addColorStop(0, 'rgba(245,96,50,0.10)');
+      g.addColorStop(0.5, 'rgba(18,19,61,0.25)');
+      g.addColorStop(1, 'rgba(18,19,61,0.85)');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, W, H);
     } catch (e) { /* card keeps its flat background */ }
@@ -171,7 +206,8 @@ function setupScroll() {
       const el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      if (lenis) lenis.scrollTo(el, { offset: id === '#top' ? 0 : -70, duration: 1.4 });
+      const offset = id === '#top' || id === '#record' ? 0 : -top.getBoundingClientRect().height - 18;
+      if (lenis) lenis.scrollTo(el, { offset, duration: 1.4 });
       else el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (id !== '#top') el.setAttribute('tabindex', '-1');
       window.setTimeout(() => el.focus({ preventScroll: true }), 900);
@@ -186,6 +222,8 @@ function setupScroll() {
   });
 
   const steps = [...document.querySelectorAll('.record-step')];
+  const stepButtons = [...document.querySelectorAll('[data-record-step]')];
+  steps.forEach((step, i) => step.setAttribute('aria-hidden', String(i !== 0)));
   let active = 0;
   const setStep = (n) => {
     if (n === active) return;
@@ -193,9 +231,11 @@ function setupScroll() {
     steps.forEach((s, i) => {
       s.classList.toggle('is-active', i === n);
       s.classList.toggle('is-past', i < n);
+      s.setAttribute('aria-hidden', String(i !== n));
     });
+    stepButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === n)));
   };
-  ScrollTrigger.create({
+  const recordTrigger = ScrollTrigger.create({
     trigger: '.record',
     start: 'top top',
     end: () => '+=' + Math.round(window.innerHeight * 3.2),
@@ -207,6 +247,11 @@ function setupScroll() {
       pushJourney();
     },
   });
+  stepButtons.forEach((button, i) => button.addEventListener('click', () => {
+    const destination = recordTrigger.start + ((i + .15) / steps.length) * (recordTrigger.end - recordTrigger.start);
+    if (lenis) lenis.scrollTo(destination, { duration: .9 });
+    else window.scrollTo({ top: destination, behavior: 'smooth' });
+  }));
 
   const mm = gsap.matchMedia();
   mm.add('(min-width: 900px)', () => {
@@ -259,7 +304,7 @@ async function setup3D() {
   })();
   if (!supported) { html.classList.add('no-webgl', 'has-still'); return; }
   try {
-    const { createRecord } = await import('./record.js');
+    const { createRecord } = await import('./record.js?v=york-brand-20261009');
     record = await createRecord(canvas, { mobile, reduced });
     window.__record = record;
     html.classList.add('has-webgl');
@@ -273,10 +318,21 @@ async function setup3D() {
     }, { passive: true });
 
     let visible = true;
+    let scenePaused = false;
+    const sceneToggle = document.querySelector('[data-scene-toggle]');
     const run = () => {
       if (reduced) { record.renderOnce(); return; }
-      if (visible && !document.hidden) record.start(); else record.stop();
+      if (visible && !document.hidden && !scenePaused) record.start(); else record.stop();
     };
+    if (!reduced && sceneToggle) {
+      sceneToggle.hidden = false;
+      sceneToggle.addEventListener('click', () => {
+        scenePaused = !scenePaused;
+        sceneToggle.setAttribute('aria-pressed', String(scenePaused));
+        sceneToggle.textContent = scenePaused ? 'Play 3D scene' : 'Pause 3D scene';
+        run();
+      });
+    }
     new IntersectionObserver(([en]) => {
       visible = en.isIntersecting;
       html.classList.toggle('stage-off', !visible);

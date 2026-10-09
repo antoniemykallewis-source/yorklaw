@@ -6,16 +6,18 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>York Law Firm | Website concept by Vessel Archive</title>
 <meta name="description" content="A 3D website concept for York Law Firm, designed by Vessel Archive. Not the firm's official website.">
-<meta name="theme-color" content="#0B0D10">
+<meta name="theme-color" content="#2828A3">
 <meta property="og:type" content="website">
 <meta property="og:title" content="York Law Firm: website concept by Vessel Archive">
 <meta property="og:description" content="Neglect leaves a record. A 3D website concept. Not the firm's official website.">
-<meta property="og:image" content="https://antoniemykallewis-source.github.io/yorklaw/img/og.jpg">
+<meta property="og:image" content="https://antoniemykallewis-source.github.io/yorklaw/img/york-team.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0D10'/%3E%3Crect x='14' y='12' width='10' height='40' fill='%23FFB547'/%3E%3Crect x='30' y='12' width='20' height='6' fill='%23ECE9E2'/%3E%3Crect x='30' y='24' width='20' height='6' fill='%23ECE9E2'/%3E%3Crect x='30' y='36' width='14' height='6' fill='%23ECE9E2'/%3E%3C/svg%3E">
-<link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/ibm-plex-mono-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css">
+<link rel="icon" href="img/york-favicon.png" type="image/png" sizes="192x192">
+<link rel="preload" href="fonts/poppins-700.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/nunito-sans-400.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="img/york-team.jpg" as="image" fetchpriority="high">
+<link rel="stylesheet" href="css/site.css?v=york-brand-20261009">
+<link rel="stylesheet" href="css/brand.css?v=york-brand-20261009">
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
 <body>
@@ -30,8 +32,7 @@
   </div>
   <header class="nav" data-nav>
     <a class="brand" href="#top" aria-label="York Law Firm, back to top">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name">York Law Firm</span>
+      <img class="brand-logo" src="img/york-logo.png" alt="York Law Firm" width="1001" height="192">
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#cases">Cases</a>
@@ -72,6 +73,8 @@
   <div class="stage" data-stage>
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-inner">
+        <div class="hero-copy">
+        <p class="hero-eyebrow"><span></span> Sacramento · San Jose · Berkeley</p>
         <h1 class="hero-title" id="hero-title">Neglect leaves a record. <em>We find it.</em></h1>
         <p class="hero-sub">York Law Firm represents families in elder abuse, neglect and wrongful death cases against nursing homes and care operators.</p>
         <div class="hero-ctas">
@@ -83,11 +86,26 @@
             916-643-2200
           </a>
         </div>
+        <a class="hero-explore" href="#record">Explore how we build a case <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-visual">
+          <a class="hero-photo" href="#team" data-tilt aria-label="Meet Wendy York, Paige Farris and Daniel Jay">
+            <div class="hero-photo-window">
+              <img src="img/york-team.jpg" alt="York Law Firm attorneys Paige Farris, Wendy C. York and Daniel P. Jay" width="2000" height="1161" fetchpriority="high" decoding="async">
+              <span class="photo-corner" aria-hidden="true"></span>
+            </div>
+            <div class="hero-photo-caption"><span>Your family. Our fight.</span><span class="photo-arrow" aria-hidden="true">↗</span></div>
+            <span class="photo-depth" aria-hidden="true"></span>
+          </a>
+          <div class="hero-photo-note"><span>Compassion backed by action.</span><a href="#team">Meet the team ↗</a></div>
+        </div>
       </div>
+      <div class="hero-bottom"><span>Holding care operators accountable.</span><button type="button" class="scene-toggle" data-scene-toggle aria-pressed="false" hidden>Pause 3D scene</button></div>
     </section>
 
     <section class="record" id="record" aria-labelledby="record-title" data-record>
       <h2 class="sr" id="record-title">How a case gets built from the records</h2>
+      <div class="record-toolbar"><p class="label">From questions to evidence</p><a href="#cases">Skip to cases <span aria-hidden="true">↓</span></a></div>
       <ol class="record-steps" data-record-steps>
         <li class="record-step is-active">
           <h3>Every shift leaves paper behind.</h3>
@@ -106,6 +124,12 @@
           <p>At the mediation table, or in front of a jury.</p>
         </li>
       </ol>
+      <nav class="record-controls" aria-label="Explore the evidence process">
+        <button type="button" data-record-step="0" aria-pressed="true" aria-label="Step 1: the records"><span>01</span><i></i></button>
+        <button type="button" data-record-step="1" aria-pressed="false" aria-label="Step 2: the gaps"><span>02</span><i></i></button>
+        <button type="button" data-record-step="2" aria-pressed="false" aria-label="Step 3: the timeline"><span>03</span><i></i></button>
+        <button type="button" data-record-step="3" aria-pressed="false" aria-label="Step 4: accountability"><span>04</span><i></i></button>
+      </nav>
       <p class="record-note">The records in this scene are illustrations, not real documents.</p>
     </section>
   </div>
@@ -113,6 +137,7 @@
   <section class="cases" id="cases" aria-labelledby="cases-title">
     <div class="wrap">
       <div class="cases-head reveal">
+        <p class="label">Standing with families</p>
         <h2 class="h2" id="cases-title">Cases we take on</h2>
         <p class="lede">Harm in nursing homes, assisted living and memory care, and the families left to make sense of it.</p>
       </div>
@@ -206,6 +231,7 @@
           </figure>
         </div>
         <div class="voice-side">
+          <a class="voice-portrait" href="https://www.yorklawfirm.com/attorney/york-wendy-c/" aria-label="Learn about Wendy C. York"><img src="img/wendy-portrait.jpg" alt="Wendy C. York, founder of York Law Firm" width="500" height="631" loading="lazy" decoding="async"></a>
           <div class="voice-controls">
             <button type="button" class="voice-btn" data-voice-prev aria-label="Previous review">
               <svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"/></svg>
@@ -265,32 +291,43 @@
 
   <section class="team" id="team" aria-labelledby="team-title">
     <div class="wrap">
+      <p class="label reveal">Real people. Relentless advocates.</p>
       <h2 class="h2 reveal" id="team-title">The people on your case</h2>
       <div class="team-grid">
         <article class="person person-lead reveal">
-          <div class="intro" role="img" aria-label="Placeholder for a video introduction from Wendy C. York"><span class="intro-play"><svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></svg></span></div>
-          <p class="intro-note">Video intro, shot by Vessel Archive</p>
+          <a class="portrait" data-tilt href="https://www.yorklawfirm.com/attorney/york-wendy-c/" aria-label="Read Wendy C. York's biography">
+            <img src="img/wendy-york.jpg" alt="Wendy C. York" width="450" height="450" loading="lazy" decoding="async">
+            <span class="portrait-action" aria-hidden="true">Meet Wendy <span>↗</span></span>
+          </a>
           <h3>Wendy C. York</h3>
           <p class="role">Founder</p>
           <p class="bio">Took the first elder abuse case in Sacramento County to trial, in 2002. Named to Super Lawyers from 2007 to 2026.</p>
           <a class="link" href="https://www.yorklawfirm.com/attorney/york-wendy-c/" rel="noopener">Read bio</a>
         </article>
         <article class="person reveal">
-          <div class="intro" role="img" aria-label="Placeholder for a video introduction from Daniel P. Jay"><span class="intro-play"><svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></svg></span></div>
-          <p class="intro-note">Video intro, shot by Vessel Archive</p>
+          <a class="portrait" data-tilt href="https://www.yorklawfirm.com/attorney/jay-daniel-p/" aria-label="Read Daniel P. Jay's biography">
+            <img src="img/daniel-jay.jpg" alt="Daniel P. Jay" width="450" height="450" loading="lazy" decoding="async">
+            <span class="portrait-action" aria-hidden="true">Meet Daniel <span>↗</span></span>
+          </a>
           <h3>Daniel P. Jay</h3>
           <p class="role">Partner</p>
           <p class="bio">Started with Wendy York in 2001, defended public entities for years, and came back in 2017 to represent elders and their families.</p>
           <a class="link" href="https://www.yorklawfirm.com/attorney/jay-daniel-p/" rel="noopener">Read bio</a>
         </article>
         <article class="person reveal">
-          <div class="intro" role="img" aria-label="Placeholder for a video introduction from Paige Farris"><span class="intro-play"><svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></svg></span></div>
-          <p class="intro-note">Video intro, shot by Vessel Archive</p>
+          <a class="portrait" data-tilt href="https://www.yorklawfirm.com/attorney/farris-paige/" aria-label="Read Paige Farris's biography">
+            <img src="img/paige-farris.jpg" alt="Paige Farris" width="450" height="450" loading="lazy" decoding="async">
+            <span class="portrait-action" aria-hidden="true">Meet Paige <span>↗</span></span>
+          </a>
           <h3>Paige Farris</h3>
           <p class="role">Attorney</p>
           <p class="bio">UCLA School of Law, 2022. Her practice focuses on elder abuse, neglect and unsafe conditions in elder care settings.</p>
           <a class="link" href="https://www.yorklawfirm.com/attorney/farris-paige/" rel="noopener">Read bio</a>
         </article>
+      </div>
+      <div class="recognition reveal" aria-label="Wendy York's professional recognition">
+        <div><p class="label">Recognized advocacy</p><p>Experience that stands up.</p><a class="link" href="https://www.yorklawfirm.com/attorney/york-wendy-c/">View Wendy's credentials ↗</a></div>
+        <div class="recognition-logos"><img src="img/super-lawyers-20.png" alt="Wendy C. York: Super Lawyers, 20 years" width="180" height="150" loading="lazy"><img src="img/super-lawyers-top50.png" alt="Super Lawyers: Top 50 Women, Northern California" width="180" height="150" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -372,7 +409,7 @@
 <footer class="footer">
   <div class="wrap footer-grid">
     <div>
-      <p class="footer-brand"><span class="brand-mark" aria-hidden="true"></span>York Law Firm</p>
+      <a class="footer-brand" href="#top" aria-label="York Law Firm, back to top"><img src="img/york-logo.png" alt="York Law Firm" width="1001" height="192" loading="lazy"></a>
       <p class="footer-line">Elder abuse, neglect and wrongful death cases against nursing homes and care operators. Sacramento, San Jose and Berkeley.</p>
     </div>
     <nav class="footer-links" aria-label="Footer">
@@ -393,6 +430,6 @@
 <script src="vendor/gsap.min.js" defer></script>
 <script src="vendor/ScrollTrigger.min.js" defer></script>
 <script src="vendor/lenis.min.js" defer></script>
-<script type="module" src="js/main.js"></script>
+<script type="module" src="js/main.js?v=york-brand-20261009"></script>
 </body>
 </html>
