@@ -1,0 +1,40 @@
+name: capture
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/capture/**', '.github/workflows/capture.yml']
+permissions:
+  contents: write
+concurrency:
+  group: capture
+  cancel-in-progress: true
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright
+        working-directory: tools/capture
+        run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
+      - name: Capture
+        working-directory: tools/capture
+        continue-on-error: true
+        run: node capture.mjs
+      - name: Publish to captures branch
+        run: |
+          set -e
+          mkdir -p /tmp/pub && cp -r tools/capture/out /tmp/pub/out
+          git config user.name "capture-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan captures-tmp
+          git rm -rf --quiet . || true
+          rm -rf ./* .github || true
+          cp -r /tmp/pub/out ./out
+          git add out
+          git commit -m "captures $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push -f origin HEAD:refs/heads/captures
