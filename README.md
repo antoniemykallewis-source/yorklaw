@@ -1,6 +1,9 @@
-# York Law Firm x Vessel Archive
+# York Law Firm website concept
 
-Pitch deck and website concept prepared by Vessel Archive (Sacramento, CA).
+A 3D website redesign concept for York Law Firm, designed and built by Vessel Archive (Sacramento, CA).
 
-- `/deck/` pitch deck
-- `/concept/` 3D website concept (not affiliated with or endorsed by York Law Firm; not the firm's official site)
+Live: https://antoniemykallewis-source.github.io/yorklaw/
+
+Not York Law Firm's official website, and not affiliated with or endorsed by the firm. The contact form is not connected. Records shown in the 3D scene are illustrations.
+
+Built with Three.js, GSAP ScrollTrigger and Lenis. Fonts: Schibsted Grotesk and IBM Plex Mono (SIL OFL). Icons: Phosphor (MIT).
